@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Input from '../../components/Input'
-import CountryDropdown from '../../components/CountryDropdown'
+import CountryDropdown from '../CountryDropdown'
 import * as SetGeoData from '../../actions/SetGeoData'
 import * as GeoLocatorActions from '../../actions/GeoLocator'
 
@@ -22,11 +22,7 @@ class GeoLocator extends Component {
           />
           <div onClick={this.props.dispatchGeoLocator.cityTargeting}>o</div>
         </div>
-        <CountryDropdown 
-          type='text' 
-          placeholder='Country' 
-          onChange={this.props.setGeoData.typingCountry}
-        />
+        <CountryDropdown />
         <Input 
           type='text' 
           placeholder='ZIP' 

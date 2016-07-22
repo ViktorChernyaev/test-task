@@ -45,3 +45,12 @@ export function cityTargeting() {
     })
   }
 }
+
+export function countryDropdown() {
+  return (dispatch) => {
+    dispatch({
+      type: 'DISPATCH_GEODATA',
+      payload: 'geoData'
+    })
+  }
+}
