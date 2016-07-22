@@ -5,12 +5,10 @@ import { bindActionCreators } from 'redux'
 import Input from '../../components/Input'
 import CountryDropdown from '../CountryDropdown'
 import * as SetGeoData from '../../actions/SetGeoData'
-import * as GeoLocatorActions from '../../actions/GeoLocator'
 
 
 class GeoLocator extends Component {
-  
-  render() {
+  render() {    
     return (
       <div>
         <div>
@@ -19,15 +17,17 @@ class GeoLocator extends Component {
             placeholder='City' 
             className='input-group__item'
             onChange={this.props.setGeoData.typingCity}
+            value={this.props.city}
           />
-          <div onClick={this.props.dispatchGeoLocator.cityTargeting}>o</div>
+          <div onClick={this.props.setGeoData.cityTargeting}>o</div>
         </div>
-        <CountryDropdown />
+        <CountryDropdown value={this.props.country}/>
         <Input 
           type='text' 
           placeholder='ZIP' 
           className='input-group__item'
           onChange={this.props.setGeoData.typingZip}
+          value={this.props.zip}
         />
       </div>
     )
@@ -36,16 +36,15 @@ class GeoLocator extends Component {
 
 function mapStateToProps (state) {
   return {
-    city: state.shipping.city,
-    country: state.shipping.country,
-    zip: state.shipping.zip
+    city: (state.shipping.city || ''),
+    country: (state.shipping.country || ''),
+    zip: (state.shipping.zip || '')
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setGeoData: bindActionCreators(SetGeoData, dispatch),
-    dispatchGeoLocator: bindActionCreators(GeoLocatorActions, dispatch)
+    setGeoData: bindActionCreators(SetGeoData, dispatch)
   }
 }
 

@@ -5,10 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as SetGeoData from '../../actions/SetGeoData'
 
 class CountryDropdown extends Component {
-  changeValue(e) {
-    this.refs.countryInput.value = e.target.innerText;
-    this.refs.countryInput.blur()
-  }
+
   enableCountriesList() {
     this.refs.countryList.className = 'country-list--visible'
   }
@@ -17,9 +14,12 @@ class CountryDropdown extends Component {
   }
   render() {
     var countries = this.props.countries.map((country, index) => {
-      return <li key={index} onClick={::this.changeValue} value={country}>{country}</li>
+      return <li 
+        key={index} 
+        onClick={::this.props.setGeoData.changeCountry}>
+        {country}
+      </li>
     })
-    // console.log(this.props.country, this.props.countries)
     return (
       <div className='input-group__item'>
         <span style={{display: 'none'}}>error</span>
@@ -27,6 +27,7 @@ class CountryDropdown extends Component {
           ref='countryInput'
           type='text'
           placeholder='Country'
+          value={this.props.value}
           onChange={this.props.setGeoData.typingCountry}
           onFocus={::this.enableCountriesList}
           onBlur={::this.disableCountriesList}
