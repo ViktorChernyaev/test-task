@@ -5,12 +5,13 @@ import GeoLocator from '../GeoLocator'
 import * as SetGeoData from '../../actions/SetGeoData'
 import * as SetPersonalData from '../../actions/SetPersonalData'
 import { bindActionCreators } from 'redux'
+import * as validation from '../../actions/validation'
 
 
 class Shipping extends Component {
 
   render() {
-    // console.log(this.props.shipping)
+    console.log(this.props.state)
     return(
       <form>
         <h2>Shipping Info</h2>
@@ -45,7 +46,7 @@ class Shipping extends Component {
           />
           <GeoLocator />
         </div>
-        <button className='submit-btn'>Continue</button>
+        <div className='submit-btn' onClick={this.props.validation.validation}>Continue</div>
       </form>
     )
   }
@@ -54,14 +55,25 @@ class Shipping extends Component {
 function mapStateToProps (state) {
   return {
     name: state.shipping.fullName,
-    phone: state.shipping.dayTimePhone
+    phone: state.shipping.dayTimePhone,
+    state: state
+    // shippingObject: {
+    //   fullName: state.shipping.fullName,
+    //   dayTimePhone: state.shipping.dayTimePhone,
+    //   streetAddress: state.shipping.streetAddress,
+    //   moreAddress: state.shipping.moreAddress,
+    //   city: state.shipping.city,
+    //   country: state.shipping.country,
+    //   zip: state.shipping.zip
+    // }
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setPersonalData: bindActionCreators(SetPersonalData, dispatch),
-    setGeoData: bindActionCreators(SetGeoData, dispatch)
+    setGeoData: bindActionCreators(SetGeoData, dispatch),
+    validation: bindActionCreators(validation, dispatch)
   }
 }
 

@@ -5,7 +5,7 @@ export default class extends Component {
 		return (
 			<div>
 				<span style={{display: 'none'}}>error</span>
-				<input {...this.props}/>
+				<input {...this.props} />
 			</div>
 		)
 	}

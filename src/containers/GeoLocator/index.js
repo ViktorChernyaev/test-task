@@ -36,9 +36,9 @@ class GeoLocator extends Component {
 
 function mapStateToProps (state) {
   return {
-    city: (state.shipping.city || ''),
-    country: (state.shipping.country || ''),
-    zip: (state.shipping.zip || '')
+    city: (state.shipping.city.value || ''),
+    country: (state.shipping.country.value || ''),
+    zip: (state.shipping.zip.value || '')
   }
 }
 
