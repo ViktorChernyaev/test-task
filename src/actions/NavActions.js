@@ -6,33 +6,33 @@ import {
 } from '../constants/NavConstants'
 
 export function goToShipping() {
-	return (dispatch) => {
-		dispatch({
-			type: GO_TO_SHIPPPING
-		})
-	}
+  return (dispatch) => {
+    dispatch({
+      type: GO_TO_SHIPPPING
+    })
+  }
 }
 
 export function goToBilling() {
-	return (dispatch) => {
-		dispatch({
-			type: GO_TO_BILLING
-		})
-	}
+  return (dispatch) => {
+    dispatch({
+      type: GO_TO_BILLING
+    })
+  }
 }
 
 export function goToPayment() {
-	return (dispatch) => {
-		dispatch({
-			type: GO_TO_PAYMENT
-		})
-	}
+  return (dispatch) => {
+    dispatch({
+      type: GO_TO_PAYMENT
+    })
+  }
 }
 
 export function goToDonePayment() {
-	return (dispatch) => {
-		dispatch({
-			type: GO_TO_DONE_PAYMENT
-		})
-	}
+  return (dispatch) => {
+    dispatch({
+      type: GO_TO_DONE_PAYMENT
+    })
+  }
 }

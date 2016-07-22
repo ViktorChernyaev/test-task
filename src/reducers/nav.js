@@ -15,7 +15,7 @@ const initialState = {
   paymentPage: NAV_BLOCKED
 }
 
-export default function userstate(state = initialState, action) {
+export default function navstate(state = initialState, action) {
   switch (action.type) {
     case GO_TO_SHIPPPING:
       return {...state, shippingPage: NAV_ACTIVE, billingPage: NAV_BLOCKED, paymentPage: NAV_BLOCKED}
