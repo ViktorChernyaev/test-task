@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as SetGeoData from '../../actions/SetGeoData'
+import * as SetGeoData from '../../../actions/SetGeoData'
 
 class CountryDropdown extends Component {
 
@@ -16,19 +16,20 @@ class CountryDropdown extends Component {
     var countries = this.props.countries.map((country, index) => {
       return <li 
         key={index} 
-        onClick={::this.props.setGeoData.changeCountry}>
+        onClick={::this.props.action.changeCountry}>
         {country}
       </li>
     })
+    let checkErrors = ((this.props.country.status == 'ERROR') ? 'form-group__span--visible' : 'form-group__span--unvisible')
     return (
       <div className='input-group__item'>
-        <span style={{display: 'none'}}>error</span>
+        <span className={checkErrors}>cannot be empty</span>
         <input 
           ref='countryInput'
           type='text'
           placeholder='Country'
-          value={this.props.value}
-          onChange={this.props.setGeoData.typingCountry}
+          value={this.props.country.value}
+          onChange={this.props.action.typingCountry}
           onFocus={::this.enableCountriesList}
           onBlur={::this.disableCountriesList}
         />
@@ -49,7 +50,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setGeoData: bindActionCreators(SetGeoData, dispatch)
+    action: bindActionCreators(SetGeoData, dispatch)
   }
 }
 

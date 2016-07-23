@@ -2,11 +2,10 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from './containers/App'
-import Shipping from './containers/Shipping'
-import Billing from './containers/Billing'
-import Payment from './containers/Payment'
-import DonePayment from './containers/DonePayment'
-import NotFound from './components/NotFound'
+import Shipping from './containers/pages/Shipping'
+import Billing from './containers/pages/Billing'
+import Payment from './containers/pages/Payment'
+import DonePayment from './containers/pages/DonePayment'
 
 export const routes = (
   <div>
@@ -16,6 +15,5 @@ export const routes = (
       <Route path='/payment' component={Payment} />
       <Route path='/done-payment' component={DonePayment} />
     </Route>
-    <Route path='*' component={NotFound} />
   </div>
 )
