@@ -10,30 +10,29 @@ import CityInput from '../../inputs/City'
 import CountryDropdown from '../../inputs/CountryDropdown'
 import ZipInput from '../../inputs/Zip'
 
-import * as validation from '../../../actions/validation'
+import * as validation from '../../../actions/Validation'
 
 
 class Shipping extends Component {
 
   render() {
-    console.log(this.props.state)
     return(
       <form>
         <h2>Shipping Info</h2>
         <div className='input-group'>
           <span className='input-group__title'>Recipient</span>
-          <FullNameInput />
-          <PhoneInput />
+          <FullNameInput page='shipping' />
+          <PhoneInput page='shipping' />
         </div>
         <div className='input-group'>
-          <span className='input-group__title'>Billing Address</span>
-          <AddressInput />
-          <AdressDetailsInput />
-          <CityInput />
-          <CountryDropdown />
-          <ZipInput />
+          <span className='input-group__title'>Address</span>
+          <AddressInput page='shipping' />
+          <AdressDetailsInput page='shipping' />
+          <CityInput page='shipping' />
+          <CountryDropdown page='shipping' />
+          <ZipInput page='shipping' />
         </div>
-        <div className='submit-btn' onClick={this.props.validation.validation}>Continue</div>
+        <div className='submit-btn' onClick={this.props.validation.validationShipping}>Continue</div>
       </form>
     )
   }
@@ -41,18 +40,7 @@ class Shipping extends Component {
 
 function mapStateToProps (state) {
   return {
-    name: state.shipping.fullName,
-    phone: state.shipping.dayTimePhone,
     state: state
-    // shippingObject: {
-    //   fullName: state.shipping.fullName,
-    //   dayTimePhone: state.shipping.dayTimePhone,
-    //   streetAddress: state.shipping.streetAddress,
-    //   moreAddress: state.shipping.moreAddress,
-    //   city: state.shipping.city,
-    //   country: state.shipping.country,
-    //   zip: state.shipping.zip
-    // }
   }
 }
 

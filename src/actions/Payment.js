@@ -1,9 +1,9 @@
 import {
-	SET_CARD_HOLDER_NAME,
-	SET_CARD_NUMBER,
-	SET_CARD_EXPIRE_DATE,
-	SET_CARD_SECURITY_CODE
-} from '../constants/FormConstants'
+  SET_CARD_HOLDER_NAME,
+  SET_CARD_NUMBER,
+  SET_CARD_EXPIRE_DATE,
+  SET_CARD_SECURITY_CODE
+} from '../constants/Payment'
 
 export function typingCardHolder(e) { 
   return (dispatch) => {

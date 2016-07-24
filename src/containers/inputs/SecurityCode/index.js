@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as SetShippingData from '../../../actions/Shipping'
+import * as SetCardData from '../../../actions/Payment'
 
-class PhoneInput extends Component {
+class CardSecurityCodeInput extends Component {
   render() {
     let checkErrors = ((this.props.state.status == 'ERROR') ? 'form-group__span--visible' : 'form-group__span--unvisible')
     return (
@@ -12,8 +12,8 @@ class PhoneInput extends Component {
         <span className={checkErrors}>cannot be empty</span>
         <input
           type='text'
-          placeholder='Phone'
-          onChange={this.props.action.typingPhone}
+          placeholder=''
+          onChange={this.props.action.typingCardSecureCode}
           value={this.props.state.value}
         />
       </div>
@@ -23,14 +23,14 @@ class PhoneInput extends Component {
 
 function mapStateToProps (state) {
   return {
-    state: (state.shipping.dayTimePhone)
+    state: (state.payment.cardSecurityCode)
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    action: bindActionCreators(SetShippingData, dispatch)
+    action: bindActionCreators(SetCardData, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhoneInput)
+export default connect(mapStateToProps, mapDispatchToProps)(CardSecurityCodeInput)

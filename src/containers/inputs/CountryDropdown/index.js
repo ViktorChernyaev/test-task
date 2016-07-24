@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as SetGeoData from '../../../actions/SetGeoData'
+import * as SetShippingData from '../../../actions/Shipping'
+import * as SetBillingData from '../../../actions/Billing'
 
 class CountryDropdown extends Component {
 
@@ -13,10 +14,11 @@ class CountryDropdown extends Component {
     this.refs.countryList.className = 'country-list--unvisible'
   }
   render() {
+    let checkActionType = (this.props.page == 'billing' ? this.props.SetBillingData : this.props.SetShippingData)
     var countries = this.props.countries.map((country, index) => {
       return <li 
         key={index} 
-        onClick={::this.props.action.changeCountry}>
+        onClick={checkActionType.changeCountry}>
         {country}
       </li>
     })
@@ -29,7 +31,7 @@ class CountryDropdown extends Component {
           type='text'
           placeholder='Country'
           value={this.props.country.value}
-          onChange={this.props.action.typingCountry}
+          onChange={checkActionType.typingCountry}
           onFocus={::this.enableCountriesList}
           onBlur={::this.disableCountriesList}
         />
@@ -42,15 +44,28 @@ class CountryDropdown extends Component {
 }
 
 function mapStateToProps (state) {
-  return {
-    country: state.shipping.country,
-    countries: state.shipping.countriesList
-  }
+  if (state.validation.shippingPage == 'INVALID' && state.validation.billingPage == 'UNCHECKED') {
+    return {
+      country: (state.shipping.country),
+      countries: state.shipping.countriesList
+    }
+  } else if (state.validation.billingPage == 'INVALID' && state.validation.paymentPage == 'UNCHECKED') {
+    return {
+      country: (state.billing.country),
+      countries: state.billing.countriesList
+    }
+  } else {
+    return {
+      country: state,
+      countries: state.billing.countriesList
+    }
+  } 
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    action: bindActionCreators(SetGeoData, dispatch)
+    SetShippingData: bindActionCreators(SetShippingData, dispatch),
+    SetBillingData: bindActionCreators(SetBillingData, dispatch)
   }
 }
 

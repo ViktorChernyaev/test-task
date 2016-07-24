@@ -3,13 +3,14 @@ import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 
 import { rootReducer } from '../reducers/index'
-import { billingRedirect } from '../middlewares/billingRedirect'
+import { billingRedirect, paymentRedirect } from '../middlewares/redirect'
 
 export default function configureStore() {
   const store = compose(
     applyMiddleware(thunkMiddleware),
     applyMiddleware(createLogger()),
-    applyMiddleware(billingRedirect)
+    applyMiddleware(billingRedirect),
+    applyMiddleware(paymentRedirect)
   )(createStore)(rootReducer)
 
   if (module.hot) {

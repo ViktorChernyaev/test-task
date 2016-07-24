@@ -1,21 +1,46 @@
 import Request from 'superagent'
-
 import {
-	SET_GEO_ADDRESS,
-	SET_GEO_ADDRESS_MORE,
-	SET_GEO_CITY,
-  SET_GEO_COUNTRY_CLICK,
-	SET_GEO_COUNTRY_TYPING,
-	SET_GEO_ZIP,
-  DISPATCH_GEODATA_CITY,
-  DISPATCH_GEODATA_COUNTRY,
-  DISPATCH_GEODATA_POSTAL_CODE
-} from '../constants/FormConstants'
+  SET_FULL_NAME_BILLING,
+  SET_EMAIL_BILLING,
+
+  SET_GEO_ADDRESS_BILLING,
+  SET_GEO_ADDRESS_MORE_BILLING,
+  SET_GEO_CITY_BILLING,
+  SET_GEO_COUNTRY_CLICK_BILLING,
+  SET_GEO_COUNTRY_TYPING_BILLING,
+  SET_GEO_ZIP_BILLING,
+
+  DISPATCH_GEODATA_CITY_BILLING,
+  DISPATCH_GEODATA_COUNTRY_BILLING,
+  DISPATCH_GEODATA_POSTAL_CODE_BILLING,
+
+  SET_GEO_AS_SHIPPING
+} from '../constants/Billing'
+
+
+export function typingName(e) { 
+  return (dispatch) => {
+    dispatch({
+      type: SET_FULL_NAME_BILLING,
+      value: e.target.value
+    })
+  }
+}
+
+
+export function typingEmail(e) { 
+  return (dispatch) => {
+    dispatch({
+      type: SET_EMAIL_BILLING,
+      value: e.target.value
+    })
+  }
+}
 
 export function typingAddress(e) { 
   return (dispatch) => {
     dispatch({
-      type: SET_GEO_ADDRESS,
+      type: SET_GEO_ADDRESS_BILLING,
       value: e.target.value
     })
   }
@@ -24,7 +49,7 @@ export function typingAddress(e) {
 export function typingAddressDetails(e) { 
   return (dispatch) => {
     dispatch({
-      type: SET_GEO_ADDRESS_MORE,
+      type: SET_GEO_ADDRESS_MORE_BILLING,
       value: e.target.value
     })
   }
@@ -33,7 +58,7 @@ export function typingAddressDetails(e) {
 export function typingCity(e) { 
   return (dispatch) => {
     dispatch({
-      type: SET_GEO_CITY,
+      type: SET_GEO_CITY_BILLING,
       value: e.target.value
     })
   }
@@ -69,19 +94,19 @@ export function cityTargeting() {
             let dispatchGeoData = function() {
               if (geoData.city != null) {
                 dispatch({
-                  type: DISPATCH_GEODATA_CITY,
+                  type: DISPATCH_GEODATA_CITY_BILLING,
                   payload: geoData.city
                 })
               }
               if (geoData.country != null) {
                  dispatch({
-                  type: DISPATCH_GEODATA_COUNTRY,
+                  type: DISPATCH_GEODATA_COUNTRY_BILLING,
                   payload: geoData.country
                 })
               }
               if (geoData.postalCode != null) {
                 dispatch({
-                  type: DISPATCH_GEODATA_POSTAL_CODE,
+                  type: DISPATCH_GEODATA_POSTAL_CODE_BILLING,
                   payload: geoData.postalCode
                 })
               }
@@ -120,13 +145,13 @@ export function typingCountry(e) {
       changeResultsArray()
       if (value == '') {
          dispatch({
-          type: SET_GEO_COUNTRY_CLICK,
+          type: SET_GEO_COUNTRY_CLICK_BILLING,
           value: value,
           listOfCountries: []
         })
       } else {
         dispatch({
-          type: SET_GEO_COUNTRY_CLICK,
+          type: SET_GEO_COUNTRY_CLICK_BILLING,
           value: value,
           listOfCountries: listOfCountries
         })
@@ -138,7 +163,7 @@ export function typingCountry(e) {
 export function changeCountry(e) {
   return (dispatch) => {
     dispatch({
-      type: SET_GEO_COUNTRY_TYPING,
+      type: SET_GEO_COUNTRY_TYPING_BILLING,
       value: e.target.innerText
     })
   }
@@ -147,8 +172,18 @@ export function changeCountry(e) {
 export function typingZip(e) { 
   return (dispatch) => {
     dispatch({
-      type: SET_GEO_ZIP,
+      type: SET_GEO_ZIP_BILLING,
       value: e.target.value
+    })
+  }
+}
+
+export function sameAsShipping() {
+  return (dispatch, getState) => {
+    let state = getState();
+    dispatch({
+      type: SET_GEO_AS_SHIPPING,
+      payload: state
     })
   }
 }

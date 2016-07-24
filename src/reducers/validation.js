@@ -6,10 +6,16 @@ const initialState = {
 }
 
 export default function shippingForm(state = initialState, action) {
-  
-  if (action.type == 'VALID_SHIPPING'){
-    return {...state, shippingPage: 'VALID'}
-  } else { 
-    return state
+
+  switch(action.type) {
+
+    case 'VALID_SHIPPING':
+      return {...state, shippingPage: 'VALID', billingPage: 'INVALID'}
+
+    case 'VALID_BILLING':
+      return {...state, billingPage: 'VALID', paymentPage: 'INVALID'}
+
+    default:
+      return state
   }
 }
