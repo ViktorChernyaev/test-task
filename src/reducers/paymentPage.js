@@ -4,7 +4,8 @@ const initialState = {
   cardHolderName: {value: '', status: 'UNCHECKED', error: ''},
   cardNumber: {value: '', status: 'UNCHECKED', error: ''},
   cardExpireDate: {value: '', status: 'UNCHECKED', error: ''},
-  cardSecurityCode: {value: '', status: 'UNCHECKED', error: ''}
+  cardSecurityCode: {value: '', status: 'UNCHECKED', error: ''},
+  detectedVisa: false
 }
 
 export default function shippingForm(state = initialState, action){
@@ -20,9 +21,16 @@ export default function shippingForm(state = initialState, action){
     
     case FormConstants.SET_CARD_NUMBER:
       if (action.value !== '') {
-        return { ...state, cardNumber: {value: action.value, status: 'CHECKED', error: ''}}
+        return { ...state, cardNumber: {value: action.value, status: 'CHECKED', error: ''}, detectedVisa: false}
       } else {
-        return { ...state, cardNumber: {value: '', status: 'ERROR', error: 'EMPTY'}}
+        return { ...state, cardNumber: {value: '', status: 'ERROR', error: 'EMPTY'}, detectedVisa: false}
+      }
+
+    case 'DETECT_VISA': 
+      if (action.value !== '') {
+        return { ...state, cardNumber: {value: action.value, status: 'CHECKED', error: ''}, detectedVisa: true}
+      } else {
+        return { ...state, cardNumber: {value: '', status: 'ERROR', error: 'EMPTY'}, detectedVisa: false}
       }
     
     case FormConstants.SET_CARD_EXPIRE_DATE:
@@ -38,6 +46,8 @@ export default function shippingForm(state = initialState, action){
       } else {
         return { ...state, cardSecurityCode: {value: '', status: 'ERROR', error: 'EMPTY'}}
       }
+
+
     
     default:
       return state

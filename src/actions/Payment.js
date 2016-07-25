@@ -16,10 +16,61 @@ export function typingCardHolder(e) {
 
 export function typingCardNumber(e) { 
   return (dispatch) => {
-    dispatch({
-      type: SET_CARD_NUMBER,
-      value: e.target.value
-    })
+    let checkVisa = /^4[0-9]{12}(?:[0-9]{3})?$/ig
+    let regExp = /^\s+/ig
+    let v = e.target.value
+    let check = () => {
+      switch(v.length) {
+
+        case 4: {
+          let newValue = v + ' '
+          dispatch({
+            type: SET_CARD_NUMBER,
+            value: newValue
+          })
+          break;
+        }
+
+        case 9: {
+          let newValue = v + ' '
+          dispatch({
+            type: SET_CARD_NUMBER,
+            value: newValue
+          })
+          break;
+        }
+
+        case 14: {
+          let newValue = v + ' '
+          dispatch({
+            type: SET_CARD_NUMBER,
+            value: newValue
+          })
+          break;
+        }
+
+        case 19: {
+          if (v.match(regExp) == v.match(checkVisa)) {
+            dispatch({
+              type: 'DETECT_VISA',
+              value: v
+            })
+          } else {
+            dispatch({
+              type: SET_CARD_NUMBER,
+              value: v
+            })
+          }
+          break;
+        }
+        default:
+          dispatch({
+            type: SET_CARD_NUMBER,
+            value: v
+          })
+      }
+    }
+    check()
   }
 }
 

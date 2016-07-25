@@ -1,84 +1,68 @@
 import React, { Component } from 'react'
 import NavLink from '../../components/NavLink'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as GoTo from '../../actions/NavActions'
 import {
-  NAV_BLOCKED,
-  NAV_ACTIVE,
-  NAV_PASSED
+  NAV_ELEM_ACTIVE,
+  NAV_ELEM_PASSED,
+  NAV_ELEM_UNCHECKED
 } from '../../constants/NavConstants'
 
 class BreadCrumbs extends Component {
-  gotoShipping() {
-    this.props.actions.goToShipping()
-  }
-  gotoBilling() {
-    this.props.actions.goToBilling()
-  }
-  gotoPayment() {
-    this.props.actions.goToPayment()
-  }
-  gotoDonePayment() {
-    this.props.actions.goToDonePayment()
-  }
+
   render() {
     let checkNavItemState = function(state) {
       switch(state) {
-        case NAV_BLOCKED: 
+        case NAV_ELEM_UNCHECKED: 
           return 'nav__link--blocked'
-        case NAV_ACTIVE: 
+        case NAV_ELEM_ACTIVE: 
           return 'nav__link--active'
-        case NAV_PASSED:
+        case NAV_ELEM_PASSED:
           return 'nav__link--passed'
         default:
           return 'nav__link--blocked'
       }
     }
-    return(
-      <ul>
-        <li>
-          <NavLink 
-            onlyActiveOnIndex={true}
-            to='/'
-            onClick={::this.gotoShipping}
-            text='shipping'
-            usable={checkNavItemState(this.props.shippingPage)}
-          />
-        </li>
-        <li>
-          <NavLink 
-            to='/billing' 
-            onClick={::this.gotoBilling}
-            text='billing'
-            usable={checkNavItemState(this.props.billingPage)}
-          />
-        </li>
-        <li>
-          <NavLink 
-            to='/payment' 
-            onClick={::this.gotoPayment}
-            text='payment'
-            usable={checkNavItemState(this.props.paymentPage)}
-          />
-        </li>
-      </ul>
-    )
+    if (this.props.navStatus === 'NAV_ENABLE') {
+      return(
+        <ul>
+          <li>
+            <NavLink 
+              onlyActiveOnIndex={true}
+              to='/'
+              text='shipping'
+              usable={checkNavItemState(this.props.shipping)}
+            />
+          </li>
+          <li>
+            <NavLink 
+              to='/billing' 
+              text='billing'
+              usable={checkNavItemState(this.props.billing)}
+            />
+          </li>
+          <li>
+            <NavLink 
+              to='/payment' 
+              text='payment'
+              usable={checkNavItemState(this.props.payment)}
+            />
+          </li>
+        </ul>
+      )
+    } else {
+      return <div></div>
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    shippingPage: state.nav.shippingPage,
-    billingPage: state.nav.billingPage,
-    paymentPage: state.nav.paymentPage
+    shipping: state.validation.navigation.shipping,
+    billing: state.validation.navigation.billing,
+    payment: state.validation.navigation.payment,
+    navStatus: state.validation.navigation.status
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(GoTo, dispatch)
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(BreadCrumbs)
+export default connect(mapStateToProps)(BreadCrumbs)

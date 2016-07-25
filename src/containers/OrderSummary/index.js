@@ -13,7 +13,7 @@ class OrderSummary extends Component {
   }
 
   render() {
-    var itemsMap = this.props.items.map( (item, index) => {
+    let itemsMap = this.props.items.map( (item, index) => {
       if (this.props.items !== [] ) {
         return <OrderListItem 
           key={index}
@@ -25,9 +25,9 @@ class OrderSummary extends Component {
         />
       }
     })
-
+    let orderStatus = this.props.orderStatus === 'ENABLE' ? 'order-summary' : 'order-summary order-summary--hided'
     return (
-      <div className='order-summary'>
+      <div className={orderStatus}>
         <h3 className='order-summary__title'>Order Summary</h3>
         <a href='#' className='order-summary__edit'>edit order</a>
         <div className='order-summary__list'>
@@ -49,7 +49,8 @@ class OrderSummary extends Component {
 function mapStateToProps (state) {
   return {
     items: state.order.items,
-    prices: state.order
+    prices: state.order,
+    orderStatus: state.validation.order
   }
 }
 
