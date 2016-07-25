@@ -75,21 +75,15 @@ export function validationBilling() {
 export function validationPayment() { 
   return (dispatch, getState) => {
     var checkInputValues = function() {
-      var state = getState().billing
+      var state = getState().payment
       console.log(state)
-      if (state.fullName.status != 'CHECKED' || state.fullName.error != '') {
+      if (state.cardHolderName.status != 'CHECKED' || state.cardHolderName.error != '') {
         return false
-      } else if (state.email.status != 'CHECKED' || state.email.error != '') {
+      } else if (state.cardNumber.status != 'CHECKED' || state.cardNumber.error != '') {
         return false
-      } else if (state.streetAddress.status != 'CHECKED' || state.streetAddress.error != '') {
+      } else if (state.cardExpireDate.status != 'CHECKED' || state.cardExpireDate.error != '') {
         return false
-      } else if (state.moreAddress.status != 'CHECKED' || state.moreAddress.error != '') {
-        return false
-      } else if (state.city.status != 'CHECKED' || state.city.error != '') {
-        return false
-      } else if (state.country.status != 'CHECKED' || state.country.error != '') {
-        return false
-      } else if (state.zip.status != 'CHECKED' || state.zip.error != '') {
+      } else if (state.cardSecurityCode.status != 'CHECKED' || state.cardSecurityCode.error != '') {
         return false
       } else {
         dispatch({
@@ -103,7 +97,7 @@ export function validationPayment() {
     }
     if (checkInputValues() == false) {
       dispatch({
-        type: 'INVALID_BILLING'
+        type: 'INVALID_PAYMENT'
       })
     }
   }

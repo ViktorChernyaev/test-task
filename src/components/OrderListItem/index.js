@@ -5,16 +5,16 @@ export default class OrderListItem extends Component {
     return (
       <div className='order-item'>
         <div className='order-item__img-wrap'>
-          <img  className='order-item__img' />
+          <div  className='order-item__img' style={{'backgroundImage': this.props.img}}/>
         </div>
         <div className='order-item__info-wrap'>
-          <h5 className='order-item__name'>Name</h5>
-          <span className='order-item__info'>Black</span>
-          <span className='order-item__count'>Quantity: 1</span>
+          <h5 className='order-item__name'>{this.props.name}</h5>
+          <span className='order-item__info'>{this.props.description}</span>
+          <span className='order-item__count'>Quantity: {this.props.quantity}</span>
         </div>
         <div className='order-item__price-wrap'>
           <span className='order-item__currency'/>
-          <span className='order-item__price'>48</span>
+          <span className='order-item__price'>{this.props.price}</span>
         </div>
       </div>
     )

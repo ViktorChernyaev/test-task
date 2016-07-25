@@ -34,7 +34,7 @@ class Billing extends Component {
           <CountryDropdown page='billing' />
           <ZipInput page='billing' />
         </div>
-        <div className='submit-btn' onClick={this.props.validation.validationPayment}>Continue</div>
+        <div className='submit-btn' onClick={this.props.validation.validationBilling}>Continue</div>
       </form>
     )
   }

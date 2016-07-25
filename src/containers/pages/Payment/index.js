@@ -31,7 +31,7 @@ class Payment extends Component {
           <span className='input-group__title'>Security Code</span>
           <SecurityCodeInput />
         </div>
-        <div className='submit-btn' onClick={this.props.validation.validation}>Continue</div>
+        <div className='submit-btn' onClick={this.props.validation.validationPayment}>Continue</div>
       </form>
     )
   }

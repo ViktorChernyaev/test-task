@@ -15,6 +15,9 @@ export default function shippingForm(state = initialState, action) {
     case 'VALID_BILLING':
       return {...state, billingPage: 'VALID', paymentPage: 'INVALID'}
 
+    case 'VALID_PAYMENT':
+      return {...state, paymentPage: 'VALID', dovePaymentPage: 'ACTIVE'}
+
     default:
       return state
   }

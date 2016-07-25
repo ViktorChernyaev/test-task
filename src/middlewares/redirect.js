@@ -13,3 +13,10 @@ export const paymentRedirect = store => next => action => { //eslint-disable-lin
   }
   return next(action)
 }
+
+export const donePaymentRedirect = store => next => action => { //eslint-disable-line no-unused-vars
+  if (action.type === 'VALID_PAYMENT') {
+    browserHistory[action.payload.method](action.payload.nextUrl)
+  }
+  return next(action)
+}
