@@ -35,14 +35,37 @@ $purple: #7a3fa8
 	font-size: 15px
 	margin-top: 20px
 	margin-bottom: 15px
+	position: relative
+	padding-left: 30px
 	&:before
-		content: ''
+		content: '\f023'
+		position: absolute
+		left: 5px
+		top: 0
+		bottom: 0
+		margin: auto 0
+		font-family: fontawesome
 		display: inline-block
-		vertical-align: bottom
+		vertical-align: middle
 		width: 20px
-		height: 20px
-		background-color: green
-		margin-right: 5px
+		height: 30px
+		font-size: 25px
+		line-height: 30px
+		text-align: center
+		z-index: 1
+	&:after
+		content: '\f00c'
+		position: absolute
+		font-family: fontawesome
+		display: block
+		width: 15px
+		height: 6px
+		color: #7ed321
+		left: 13px
+		top: 0
+		bottom: 0
+		margin: auto 0
+		z-index: 2
 
 .order-number
 	display: inline-block
@@ -95,6 +118,14 @@ $purple: #7a3fa8
 	top: 0
 	bottom: 0
 	margin: auto 0
-	background-color: green
+	&:before
+		content: '\f1f0'
+		font-family: fontawesome
+		display: block
+		line-height: 40px
+		text-align: center
+		color: #00579f
+		font-size: 25px
+
 .visa-logo--invisible
 	display: none

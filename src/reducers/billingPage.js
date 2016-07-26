@@ -98,6 +98,32 @@ export default function shippingForm(state = initialState, action){
       }
     }
 
+    case 'INVALID_BILLING':{
+      var checkStatus = (obj) => {
+        if (obj.status == 'UNCHECKED') {
+          var newObj={
+            value: obj.value,
+            status: 'ERROR',
+            error: 'EMPTY'
+          }
+          console.log(newObj)
+          return newObj
+        } else {
+          return obj
+        }
+      }
+      return {
+        ...state,
+        fullName: checkStatus(state.fullName),
+        email: checkStatus(state.email),
+        streetAddress: checkStatus(state.streetAddress),
+        moreAddress: checkStatus(state.moreAddress),
+        city: checkStatus(state.city),
+        country: checkStatus(state.country),
+        zip: checkStatus(state.zip)
+      }
+    }
+
     default:
       return state
   }

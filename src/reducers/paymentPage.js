@@ -47,7 +47,28 @@ export default function shippingForm(state = initialState, action){
         return { ...state, cardSecurityCode: {value: '', status: 'ERROR', error: 'EMPTY'}}
       }
 
-
+    case 'INVALID_PAYMENT':{
+      var checkStatus = (obj) => {
+        if (obj.status == 'UNCHECKED') {
+          var newObj={
+            value: obj.value,
+            status: 'ERROR',
+            error: 'EMPTY'
+          }
+          console.log(newObj)
+          return newObj
+        } else {
+          return obj
+        }
+      }
+      return {
+        ...state,
+        cardHolderName: checkStatus(state.cardHolderName),
+        cardNumber: checkStatus(state.cardNumber),
+        cardExpireDate: checkStatus(state.cardExpireDate),
+        cardSecurityCode: checkStatus(state.cardSecurityCode)
+      }
+    }
     
     default:
       return state

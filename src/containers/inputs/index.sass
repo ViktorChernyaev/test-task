@@ -79,6 +79,7 @@
 	text-overflow: ellipsis
 	bottom: 50px
 	z-index: 3
+	transition: visibility 0.2s
 	>li
 		background-color: #fff
 		padding: 5px 
@@ -90,16 +91,22 @@
 			background-color: #ddd
 
 .countries-list--unvisible
-	display: none
+	visibility: hidden
 
 .city-targeting-btn
 	display: block
 	position: absolute
-	width: 35px
-	height: 35px
+	width: 40px
+	height: 40px
 	right: 0
 	top: 0
 	bottom: 0
 	margin: auto 0
-	background-color: green
 	cursor: pointer
+	text-align: center
+	&:before
+		content: '\f05b'
+		font-family: fontawesome
+		color: $purple
+		line-height: 40px
+		font-size: 20px

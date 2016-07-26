@@ -5,7 +5,7 @@ export default class OrderListItem extends Component {
     return (
       <div className='order-item clearfix'>
         <div className='order-item__img-wrap'>
-          <div  className='order-item__img' style={{'backgroundImage': this.props.img}}/>
+          <div  className='order-item__img' />
         </div>
         <div className='order-item__info-wrap'>
           <h5 className='order-item__name'>{this.props.name}</h5>

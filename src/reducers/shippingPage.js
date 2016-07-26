@@ -90,7 +90,33 @@ export default function shippingForm(state = initialState, action){
         return { ...state, zip: {value: action.payload, status: 'CHECKED', error: ''}}
       } else {
         return { ...state, zip: {value: '', status: 'ERROR', error: 'EMPTY'}}
-      }      
+      }
+
+    case 'INVALID_SHIPPING':{
+      var checkStatus = (obj) => {
+        if (obj.status == 'UNCHECKED') {
+          var newObj={
+            value: obj.value,
+            status: 'ERROR',
+            error: 'EMPTY'
+          }
+          console.log(newObj)
+          return newObj
+        } else {
+          return obj
+        }
+      }
+      return {
+        ...state,
+        fullName: checkStatus(state.fullName),
+        dayTimePhone: checkStatus(state.dayTimePhone),
+        streetAddress: checkStatus(state.streetAddress),
+        moreAddress: checkStatus(state.moreAddress),
+        city: checkStatus(state.city),
+        country: checkStatus(state.country),
+        zip: checkStatus(state.zip)
+      }
+    }
 
     default:
       return state

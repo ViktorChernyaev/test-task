@@ -2,7 +2,6 @@ export function validationShipping() {
   return (dispatch, getState) => {
     var checkInputValues = function() {
       var state = getState().shipping
-      console.log(state)
       if (state.fullName.status != 'CHECKED' || state.fullName.error != '') {
         return false
       } else if (state.dayTimePhone.status != 'CHECKED' || state.dayTimePhone.error != '') {
