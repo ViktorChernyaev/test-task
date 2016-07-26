@@ -8,6 +8,7 @@ const initialState = {
   city: {value: '', status: 'UNCHECKED', error: ''},
   country: {value: '', status: 'UNCHECKED', error: ''},
   zip: {value: '', status: 'UNCHECKED', error: ''},
+  initialCountriesList: [],
   countriesList: []
 }
 
@@ -100,7 +101,6 @@ export default function shippingForm(state = initialState, action){
             status: 'ERROR',
             error: 'EMPTY'
           }
-          console.log(newObj)
           return newObj
         } else {
           return obj
@@ -116,6 +116,10 @@ export default function shippingForm(state = initialState, action){
         country: checkStatus(state.country),
         zip: checkStatus(state.zip)
       }
+    }
+
+    case 'ADD_INITIAL_COUNTRIES':{
+      return {...state, initialCountriesList: action.payload}
     }
 
     default:

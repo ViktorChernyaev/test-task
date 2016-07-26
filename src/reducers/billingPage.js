@@ -106,7 +106,6 @@ export default function shippingForm(state = initialState, action){
             status: 'ERROR',
             error: 'EMPTY'
           }
-          console.log(newObj)
           return newObj
         } else {
           return obj

@@ -22,7 +22,6 @@ class CountryDropdown extends Component {
         {country}
       </li>
     })
-    console.log(this.props.country.value)
     let checkErrors = ((this.props.country.status == 'ERROR') ? 'check-errors' : 'check-errors check-errors--unvisible')
     return (
       <div className='form-group form-group--country'>

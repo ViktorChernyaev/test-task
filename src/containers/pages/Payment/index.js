@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import CardholderNameInput from '../../inputs/CardholderName'
+import Input from '../../inputs/Input'
 import CardNumberInput from '../../inputs/CardNumber'
-import ExpireDateInput from '../../inputs/ExpireDate'
-import SecurityCodeInput from '../../inputs/SecurityCode'
 
 import * as validation from '../../../actions/Validation'
 
@@ -18,7 +16,11 @@ class Payment extends Component {
         <div className='secure-payment-desc'>This is a secure 128-bit SSL encrypted payment</div>
         <div className='input-group'>
           <span className='input-group__title'>Cardholder Name</span>
-          <CardholderNameInput />
+          <Input 
+            page='payment' 
+            field='cardHolderName'
+            placeholder='Name as it appears on your card'
+          />
         </div>
         <div className='input-group'>
           <span className='input-group__title'>Card Number</span>
@@ -26,11 +28,19 @@ class Payment extends Component {
         </div>
         <div className='input-group input-group--small'>
           <span className='input-group__title'>Expire Date</span>
-          <ExpireDateInput />
+          <Input 
+            page='payment' 
+            field='cardExpireDate'
+            placeholder='MM/YY'
+          />
         </div>
         <div className='input-group input-group--small'>
           <span className='input-group__title'>Security Code</span>
-          <SecurityCodeInput />
+          <Input 
+            page='payment' 
+            field='cardSecurityCode'
+            placeholder=''
+          />
         </div>
         <div className='form-page__submit' onClick={this.props.validation.validationPayment}>Pay Securely</div>
       </form>

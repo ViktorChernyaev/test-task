@@ -118,41 +118,51 @@ export function cityTargeting() {
   }
 }
 
-export function typingCountry(e) {
+export function downloadCountries() {
   return (dispatch) => {
-
     let url = 'https://restcountries.eu/rest/v1/all';
+    Request.get(url).then((response) => {
+      dispatch({
+        type: 'ADD_INITIAL_COUNTRIES',
+        payload: response.body
+      })
+    })
+  }
+}
+
+export function typingCountry(e) {
+  return (dispatch, getState) => {
+    let state = getState();
+    let list = state.shipping.initialCountriesList
     let value = e.target.value;
     let valueToLower = e.target.value.toLowerCase();
     let valueLength = e.target.value.length;
+    let listOfCountries = [];
 
-    Request.get(url).then((response) => {
-      let listOfCountries = [];
-      let changeResultsArray = () =>{
-        let arr = response.body;
-        for (let arrItem of arr) {  
-          if (listOfCountries.length < 10) {      
-            if (valueToLower == (arrItem.name.toLowerCase().slice(0, valueLength))) {
-              listOfCountries.push(arrItem.name)
-            }
+    let changeResultsArray = () => {
+      for (let arrItem of list) {  
+        if (listOfCountries.length < 10) {      
+          if (valueToLower == (arrItem.name.toLowerCase().slice(0, valueLength))) {
+            listOfCountries.push(arrItem.name)
           }
         }
       }
-      changeResultsArray()
-      if (value == '') {
-         dispatch({
-          type: SET_GEO_COUNTRY_CLICK_SHIPPING,
-          value: value,
-          listOfCountries: []
-        })
-      } else {
-        dispatch({
-          type: SET_GEO_COUNTRY_CLICK_SHIPPING,
-          value: value,
-          listOfCountries: listOfCountries
-        })
-      }
-    })
+    }
+    changeResultsArray()
+    
+    if (value == '') {
+      dispatch({
+        type: SET_GEO_COUNTRY_CLICK_SHIPPING,
+        value: value,
+        listOfCountries: []
+      })
+    } else {
+      dispatch({
+        type: SET_GEO_COUNTRY_CLICK_SHIPPING,
+        value: value,
+        listOfCountries: listOfCountries
+      })
+    }
   }
 }
 
