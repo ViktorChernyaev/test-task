@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class OrderListItem extends Component {
   render() {
     return (
-      <div className='order-item'>
+      <div className='order-item clearfix'>
         <div className='order-item__img-wrap'>
           <div  className='order-item__img' style={{'backgroundImage': this.props.img}}/>
         </div>
@@ -13,8 +13,7 @@ export default class OrderListItem extends Component {
           <span className='order-item__count'>Quantity: {this.props.quantity}</span>
         </div>
         <div className='order-item__price-wrap'>
-          <span className='order-item__currency'/>
-          <span className='order-item__price'>{this.props.price}</span>
+          <span className='order-item__price price--dollar'>{this.props.price}</span>
         </div>
       </div>
     )

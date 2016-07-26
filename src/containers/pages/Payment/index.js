@@ -13,8 +13,9 @@ class Payment extends Component {
 
   render() {
     return(
-      <form>
-        <h2>Payment</h2>
+      <form className='payment-page'>
+        <h2 className='form-page__title'>Payment</h2>
+        <div className='secure-payment-desc'>This is a secure 128-bit SSL encrypted payment</div>
         <div className='input-group'>
           <span className='input-group__title'>Cardholder Name</span>
           <CardholderNameInput />
@@ -31,7 +32,7 @@ class Payment extends Component {
           <span className='input-group__title'>Security Code</span>
           <SecurityCodeInput />
         </div>
-        <div className='submit-btn' onClick={this.props.validation.validationPayment}>Continue</div>
+        <div className='form-page__submit' onClick={this.props.validation.validationPayment}>Pay Securely</div>
       </form>
     )
   }

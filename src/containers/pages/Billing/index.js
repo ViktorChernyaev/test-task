@@ -19,14 +19,16 @@ class Billing extends Component {
   render() {
     return(
       <form>
-        <h2>Billing Information</h2>
-        <div onClick={this.props.sameAsShipping.sameAsShipping}>same as shipping</div>
+        <div className='billing-title-wrap'>
+          <h2 className='form-page__title'>Billing Information</h2>
+          <div onClick={this.props.sameAsShipping.sameAsShipping} className='same-as-shipping'>same as shipping</div>
+        </div>
         <div className='input-group'>
           <span className='input-group__title'>Billing Contact</span>
           <FullNameInput page='billing' />
           <EmailInput page='billing' />
         </div>
-        <div className='input-group'>
+        <div className='input-group clearfix'>
           <span className='input-group__title'>Billing Address</span>
           <AddressInput page='billing' />
           <AdressDetailsInput page='billing' />
@@ -34,7 +36,7 @@ class Billing extends Component {
           <CountryDropdown page='billing' />
           <ZipInput page='billing' />
         </div>
-        <div className='submit-btn' onClick={this.props.validation.validationBilling}>Continue</div>
+        <div className='form-page__submit' onClick={this.props.validation.validationBilling}>Continue</div>
       </form>
     )
   }

@@ -8,10 +8,10 @@ import * as SetBillingData from '../../../actions/Billing'
 class CountryDropdown extends Component {
 
   enableCountriesList() {
-    this.refs.countryList.className = 'country-list--visible'
+    this.refs.countryList.className = 'countries-list countries-list--visible'
   }
   disableCountriesList() {
-    this.refs.countryList.className = 'country-list--unvisible'
+    this.refs.countryList.className = 'countries-list countries-list--unvisible'
   }
   render() {
     let checkActionType = (this.props.page == 'billing' ? this.props.SetBillingData : this.props.SetShippingData)
@@ -22,10 +22,13 @@ class CountryDropdown extends Component {
         {country}
       </li>
     })
-    let checkErrors = ((this.props.country.status == 'ERROR') ? 'form-group__span--visible' : 'form-group__span--unvisible')
+    console.log(this.props.country.value)
+    let checkErrors = ((this.props.country.status == 'ERROR') ? 'check-errors' : 'check-errors check-errors--unvisible')
     return (
-      <div className='input-group__item'>
-        <span className={checkErrors}>cannot be empty</span>
+      <div className='form-group form-group--country'>
+        <div className={checkErrors}>
+          <span className='check-errors__span'>cannot be empty</span>
+        </div>
         <input 
           ref='countryInput'
           type='text'
@@ -35,7 +38,7 @@ class CountryDropdown extends Component {
           onFocus={::this.enableCountriesList}
           onBlur={::this.disableCountriesList}
         />
-        <ul ref='countryList'>
+        <ul ref='countryList' className='countries-list'>
           {countries}
         </ul>
       </div>

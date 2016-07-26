@@ -1,0 +1,105 @@
+.check-errors
+	position: absolute
+	left: -10px
+	top: -20px
+	background-color: #fff
+	padding: 0 10px
+	border: 1px solid rgba(0,0,0,.2)
+	border-radius: 5px
+	color: red
+	font-size: 12px
+	font-weight: 400
+	z-index: 1
+	&:before
+		content: ''
+		display: block
+		width: 10px
+		height: 10px
+		border: 1px solid rgba(0,0,0,.2)
+		position: absolute
+		left: 15px
+		bottom: -5px
+		background-color: #fff
+		transform: rotate(45deg)
+
+.check-errors__span
+	background-color: #fff
+	position: relative
+	display: inline-block
+	z-index: 1
+	line-height: 25px
+
+.check-errors--unvisible
+	display: none
+
+.form-group
+	position: relative
+	input
+		padding: 0 10px
+		width: 100%
+		font-size: 18px
+		line-height: 38px
+		border: 1px solid #dedcdc
+		border-radius: 5px
+		font-weight: 400
+		color: #000
+		margin: 10px 0
+		outline: none
+		&:focus
+			box-shadow: 0 0 20px rgba(0,0,0,.2)
+	input::-webkit-input-placeholder
+		color: #555446
+		opacity: 0.7
+	input::-moz-placeholder
+		color: #555446
+		opacity: 0.7
+	input:-moz-placeholder
+		color: #555446
+		opacity: 0.7
+	input:-ms-input-placeholder
+		color: #555446
+		opacity: 0.7
+
+.form-group--country
+	width: 180px
+	float: left
+
+.form-group--zip
+	width: 130px
+	float: left
+	margin-left: 20px
+
+.countries-list
+	list-style: none
+	margin: 0
+	padding: 0
+	position: absolute
+	left: 0
+	right: 0
+	text-overflow: ellipsis
+	bottom: 50px
+	z-index: 3
+	>li
+		background-color: #fff
+		padding: 5px 
+		border-left: 1px solid rgba(0,0,0,.2)
+		border-right: 1px solid rgba(0,0,0,.2)
+		border-top: 1px solid rgba(0,0,0,.2)
+		cursor: pointer
+		&:hover
+			background-color: #ddd
+
+.countries-list--unvisible
+	display: none
+
+.city-targeting-btn
+	display: block
+	position: absolute
+	width: 35px
+	height: 35px
+	right: 0
+	top: 0
+	bottom: 0
+	margin: auto 0
+	background-color: green
+	cursor: pointer

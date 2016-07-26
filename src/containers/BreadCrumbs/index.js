@@ -13,44 +13,44 @@ class BreadCrumbs extends Component {
     let checkNavItemState = function(state) {
       switch(state) {
         case NAV_ELEM_UNCHECKED: 
-          return 'nav__link--blocked'
+          return 'form-nav__link form-nav__link--blocked'
         case NAV_ELEM_ACTIVE: 
-          return 'nav__link--active'
+          return 'form-nav__link form-nav__link--active'
         case NAV_ELEM_PASSED:
-          return 'nav__link--passed'
+          return 'form-nav__link form-nav__link--passed'
         default:
-          return 'nav__link--blocked'
+          return 'form-nav__link form-nav__link--blocked'
       }
     }
     if (this.props.navStatus === 'NAV_ENABLE') {
       return(
-        <ul>
+        <ul className='form-nav'>
           <li>
             <NavLink 
               onlyActiveOnIndex={true}
               to='/'
-              text='shipping'
+              text='Shipping'
               usable={checkNavItemState(this.props.shipping)}
             />
           </li>
           <li>
             <NavLink 
               to='/billing' 
-              text='billing'
+              text='Billing'
               usable={checkNavItemState(this.props.billing)}
             />
           </li>
           <li>
             <NavLink 
               to='/payment' 
-              text='payment'
+              text='Payment'
               usable={checkNavItemState(this.props.payment)}
             />
           </li>
         </ul>
       )
     } else {
-      return <div></div>
+      return <div className='nav-replacement'></div>
     }
   }
 }

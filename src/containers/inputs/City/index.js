@@ -7,18 +7,20 @@ import * as SetBillingData from '../../../actions/Billing'
 
 class CityInput extends Component {
   render() {
-    let checkErrors = ((this.props.state.status == 'ERROR') ? 'form-group__span--visible' : 'form-group__span--unvisible')
+    let checkErrors = ((this.props.state.status == 'ERROR') ? 'check-errors' : 'check-errors check-errors--unvisible')
     let checkActionType = (this.props.page == 'billing' ? this.props.SetBillingData : this.props.SetShippingData)
     return (
       <div className='form-group'>
-        <span className={checkErrors}>cannot be empty</span>
+        <div className={checkErrors}>
+          <span className='check-errors__span'>cannot be empty</span>
+        </div>
         <input
           type='text'
           placeholder='City'
           onChange={checkActionType.typingCity}
           value={this.props.state.value}
         />
-        <div onClick={checkActionType.cityTargeting}>o</div>
+        <div onClick={checkActionType.cityTargeting} className='city-targeting-btn'></div>
       </div>
     )
   }

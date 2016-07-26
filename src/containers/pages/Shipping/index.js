@@ -18,13 +18,13 @@ class Shipping extends Component {
   render() {
     return(
       <form>
-        <h2>Shipping Info</h2>
+        <h2 className='form-page__title'>Shipping Info</h2>
         <div className='input-group'>
           <span className='input-group__title'>Recipient</span>
           <FullNameInput page='shipping' />
           <PhoneInput page='shipping' />
         </div>
-        <div className='input-group'>
+        <div className='input-group clearfix'>
           <span className='input-group__title'>Address</span>
           <AddressInput page='shipping' />
           <AdressDetailsInput page='shipping' />
@@ -32,7 +32,7 @@ class Shipping extends Component {
           <CountryDropdown page='shipping' />
           <ZipInput page='shipping' />
         </div>
-        <div className='submit-btn' onClick={this.props.validation.validationShipping}>Continue</div>
+        <div className='form-page__submit' onClick={this.props.validation.validationShipping}>Continue</div>
       </form>
     )
   }

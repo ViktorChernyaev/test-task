@@ -28,17 +28,25 @@ class OrderSummary extends Component {
     let orderStatus = this.props.orderStatus === 'ENABLE' ? 'order-summary' : 'order-summary order-summary--hided'
     return (
       <div className={orderStatus}>
-        <h3 className='order-summary__title'>Order Summary</h3>
-        <a href='#' className='order-summary__edit'>edit order</a>
+        <div className='order-summary__title-wrap'>
+          <h3 className='order-summary__title'>Order Summary</h3>
+          <a href='#' className='order-summary__edit'>edit order</a>
+        </div>
         <div className='order-summary__list'>
           {itemsMap}
         </div>
         <div className='order-summary__calc-price'>
-          <span className='order-summary__key'>Subtotal</span><span className='order-summary__value price--dollar'>{this.props.prices.subtotal}</span>
-          <span className='order-summary__key'>Shipping</span><span className='order-summary__value price--dollar'>{this.props.prices.shipping}</span>
-          <span className='order-summary__key'>Taxes</span><span className='order-summary__value price--dollar'>{this.props.prices.taxes}</span>
+          <div className='clearfix'>
+            <span className='order-summary__key'>Subtotal</span><span className='order-summary__value price--dollar'>{this.props.prices.subtotal}</span>
+          </div>
+          <div className='clearfix'>
+            <span className='order-summary__key'>Shipping</span><span className='order-summary__value'>{this.props.prices.shipping}</span>
+          </div>
+          <div className='clearfix'>
+            <span className='order-summary__key'>Taxes</span><span className='order-summary__value price--dollar'>{this.props.prices.taxes}</span>
+          </div>
         </div>
-        <div className='order-summary__total'>
+        <div className='order-summary__total clearfix'>
           <span className='order-summary__key'>Total</span><span className='order-summary__value price--dollar'>{this.props.prices.total}</span>
         </div>
       </div>

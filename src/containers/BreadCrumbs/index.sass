@@ -1,0 +1,42 @@
+$nav-gray: #c2c2c2
+$purple: #7a3fa8
+
+.form-nav
+	margin: 0
+	padding: 0
+	list-style: none
+	li
+		display: inline-block
+		&:first-child
+			.form-nav__link
+				margin-left: 0
+				&:after
+					content: ''
+
+.form-nav__link
+	color: $nav-gray
+	text-decoration: none
+	position: relative
+	margin-left: 40px
+	font-size: 12px
+	font-weight: 400
+	&:after
+		content: '>'
+		position: absolute
+		left: -25px
+		font-size: 25px
+		line-height: 20px
+		color: rgba(0,0,0,.2)
+		font-weight: 300
+
+.form-nav__link--blocked
+	pointer-events: none
+
+.form-nav__link--active
+	color: $purple
+
+.form-nav__link--passed
+	text-decoration: underline
+
+.nav-replacement
+	height: 19px
